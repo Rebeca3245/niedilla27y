@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pt-br"> <!-- Define o idioma da página como espanhol -->
+
+<head>
+    <!-- Define a codificação de caracteres e a responsividade da página -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Título da aba do navegador -->
+    <title>Maria Niedilla</title>
+
+    <!-- Importação de fontes do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* Reset de margens e caixas para todos os elementos */
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Estilo base do corpo da página */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Tema escuro adaptado ao sistema do usuário */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1e144f;
+            }
+
+            .container {
+                background: rgba(30, 20, 79, 0.85);
+            }
+
+            .right p,
+            .footer,
+            .socials a {
+                color: #fbd1dc;
+            }
+        }
+
+        /* Animação para entrada suave do conteúdo */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animação para efeito de brilho */
+        @keyframes sparkle {
+            0% {
+                opacity: 0.4;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0.6;
+                transform: scale(1.05);
+            }
+        }
+
+        /* Container principal da página */
+        .container {
+            width: 95%;
+            max-width: 1100px;
+            background: rgba(249, 191, 207, 0.5);
+            display: flex;
+            flex-direction: row;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        /* Lado esquerdo do layout com imagem e brilho */
+        .left {
+            width: 40%;
+            background-size: cover;
+            position: relative;
+            min-height: 300px;
+        }
+
+        /* Frase decorativa sobre a imagem à esquerda */
+        .left::after {
+            content: "Você é muito especial para todas as pessoas que lhe rodeiam!";
+            white-space: pre-line;
+            position: absolute;
+            top: 40px;
+            left: 30px;
+            font-size: 1.8em;
+            color: white;
+            font-family: 'Great Vibes', cursive;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        /* Efeitos brilhantes decorativos */
+        .left::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 70%),
+                radial-gradient(circle at 80% 60%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: sparkle 6s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        /* Lado direito com perfil e mensagens */
+        .right {
+            width: 60%;
+            padding: 40px 30px;
+            color: #fff;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Container para a imagem de perfil */
+        .perfil-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo da imagem de perfil */
+        .foto-perfil {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Navegação de categorias */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        /* Estilo dos botões da navegação */
+        nav button {
+            background: none;
+            border: none;
+            color: #1e144f;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        nav button.disabled {
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        nav button.active {
+            text-decoration: underline;
+        }
+
+        /* Nome e título da homenagem */
+        .right h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5em;
+            color: #1e144f;
+            margin: 0;
+            text-align: center;
+        }
+
+        .right h1 {
+            font-size: 1.7em;
+            font-weight: 700;
+            margin: 10px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .right p {
+            font-size: 1em;
+            color: #442e4d;
+            text-align: center;
+        }
+
+        /* Container dos botões inferiores */
+        .buttons {
+            margin-top: auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Estilo comum dos botões */
+        .btn {
+            padding: 10px 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-confirm {
+            background-color: #1e144f;
+            color: white;
+        }
+
+        .btn-date {
+            background-color: #d12f7a;
+            color: white;
+        }
+
+        /* Rodapé com nome da música */
+        .footer {
+            font-size: 14px;
+            color: #1e144f;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Ícones sociais decorativos */
+        .socials {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            justify-content: center;
+        }
+
+        .socials a {
+            text-decoration: none;
+            color: #1e144f;
+            font-size: 16px;
+        }
+
+        /* Exibição das mensagens e nomes */
+        #mensagens,
+        #nomes {
+            margin-top: 20px;
+            color: #1e144f;
+            transition: opacity 0.5s ease;
+            opacity: 1;
+            text-align: center;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s forwards;
+        }
+
+        .fade-out {
+            animation: fadeOut 0.3s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+        }
+
+        /* Botões com nomes */
+        .nome-btn {
+            margin: 5px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #d12f7a;
+            font-weight: bold;
+            border: 1px solid #d12f7a;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nome-btn:hover {
+            background-color: #d12f7a;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Balão flutuante decorativo */
+        #balon {
+            display: none;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3em;
+            animation: flotar 2s ease-in-out infinite alternate;
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                width: 95%;
+                margin: 10px;
+            }
+
+            .left {
+                width: 100%;
+                height: 250px;
+            }
+
+            .left::after {
+                font-size: 1.4em;
+                top: 20px;
+                left: 15px;
+                right: 15px;
+            }
+
+            .right {
+                width: 100%;
+                padding: 20px;
+            }
+
+            .right h2 {
+                font-size: 2em;
+            }
+
+            .right h1 {
+                font-size: 1.3em;
+            }
+
+            .right p {
+                font-size: 1em;
+            }
+
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn,
+            .nome-btn {
+                width: 100%;
+                font-size: 1em;
+            }
+
+            #balon {
+                font-size: 2em;
+                top: 10%;
+            }
+
+            .footer {
+                font-size: 0.9em;
+            }
+
+            .socials {
+                font-size: 14px;
+            }
+        }
+
+        /* Sparkle adicional para fundo da esquerda */
+        .left .sparkle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .left .sparkle::before,
+        .left .sparkle::after {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            animation: shimmer 10s linear infinite;
+            opacity: 0.4;
+        }
+
+        .left .sparkle::after {
+            animation-delay: 5s;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        /* Contador de tempo para a festa */
+        .countdown-timer {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(4px);
+            background-color: #d12f7a;
+            z-index: 2;
+        }
+
+        /* Imagem personalizada do mural */
+
+
+        .sparkle {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(gold, gold);
+            clip-path: polygon(50% 0%,
+                    61% 35%,
+                    98% 35%,
+                    68% 57%,
+                    79% 91%,
+                    50% 70%,
+                    21% 91%,
+                    32% 57%,
+                    2% 35%,
+                    39% 35%);
+            animation: twinkle 1s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes twinkle {
+            0% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.5) rotate(15deg);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(0.5) rotate(-15deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left">
+            <div id="countdown" class="countdown-timer"></div>
+        </div>
+
+        <div class="right">
+            <div class="perfil-container">
+                <img src="foto.png" alt="Foto de perfil" class="foto-perfil">
+            </div>
+
+
+
+            <nav>
+                <button onclick="mostrarNomes('clique')" id="btn-clique">CLIQUE</button>
+                <button onclick="mostrarNomes('biscoito_da_sorte')" id="btn-biscoito_da_sorte"
+                    class="disabled">BISCOITO_DA_SORTE</button>
+            </nav>
+
+            <h2>Niedilla</h2>
+            <h1><i>Aquela que carrega a suavidade das estrelas e a força das raízes</i></h1>
+            <p>Somos honrados por você ser parte da família</p>
+
+            <div id="nomes"></div>
+            <div id="mensagens"></div>
+
+            <div class="buttons">
+                <button class="btn btn-confirm" onclick="toggleMusic()">♫ Música</button>
+                <button id="btn-brilho" class="btn btn-date"> 13 ⭑ 05 ⭑ 25 </button>
+            </div>
+
+            <div class="footer">Bênçãos que não tem fim - Isadora Pompeo</div>
+            <div class="socials">
+                <a href="#">⭑</a>
+                <a href="#">⭑</a>
+                <a href="#">⭑</a>
+                <a href="#">⭑</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const mensagens = {
+            clique: {
+                Recado: "Feliz aniversário, Maria! Que privilégio é poder tê-la em nossa família. Você nos traz à memória a bondade de Deus e como Ele é detalhista conosco. É impossível estar no mesmo ambiente que você e não ser contagiado pela sua alegria. Que Deus abençoe essa nova estação e que os seus sonhos converjam com os d’Ele. Ass: Meire, Reginaldo, Felipe e Rebeca"
+            },
+
+            biscoito_da_sorte: {
+                Aperte: "Seu marido te fará um pix"
+            }
+        };
+
+        localStorage.removeItem("visitados")
+
+        const visitados = JSON.parse(localStorage.getItem("visitados")) || {
+            clique: true,
+            biscoito_da_sorte: false,
+        }
+
+        let grupoAtivo = null;
+
+        function verificarAcessoSorpresa() {
+            if (visitados.clique) {
+                document.getElementById("btn-biscoito_da_sorte").classList.remove("disabled");
+            }
+        }
+
+        let grupoVisivel = null; // Variável para controlar o grupo visível
+
+        function mostrarNomes(grupo) {
+            const nomesDiv = document.getElementById("nomes");
+            const mensagensDiv = document.getElementById("mensagens");
+
+            // Se o mesmo grupo for clicado duas vezes, esconde as mensagens
+            if (grupoVisivel === grupo) {
+                nomesDiv.innerHTML = "";
+                mensagensDiv.innerHTML = "";
+                grupoVisivel = null;
+
+                // Remove a classe de "ativo" do botão
+                const btns = document.querySelectorAll("nav button");
+                btns.forEach(btn => btn.classList.remove("active"));
+                return;
+            }
+
+            // Se outro grupo for clicado, exibe suas mensagens
+            if (grupoVisivel !== null) {
+                // Limpa o grupo anterior
+                document.getElementById("nomes").innerHTML = "";
+                document.getElementById("mensagens").innerHTML = "";
+            }
+
+            // Exibe o novo grupo
+            nomesDiv.innerHTML = "";
+            mensagensDiv.innerHTML = "";
+
+            const nomes = Object.keys(mensagens[grupo]);
+            nomes.forEach(nome => {
+                nomesDiv.innerHTML += `<button class="nome-btn" onclick="mostrarMensagem('${grupo}', '${nome}')">${nome}</button>`;
+            });
+
+            // Marca o botão como ativo
+            const btns = document.querySelectorAll("nav button");
+            btns.forEach(btn => btn.classList.remove("active"));
+            document.getElementById(`btn-${grupo}`).classList.add("active");
+
+            grupoVisivel = grupo; // Marca o grupo como visível
+        }
+
+        let mensagemVisivel = {
+            grupo: null,
+            nome: null
+        };
+
+        function mostrarMensagem(grupo, nome) {
+            const mensagensDiv = document.getElementById("mensagens");
+
+            // Se a mesma mensagem estiver visível, esconde
+            if (mensagemVisivel.grupo === grupo && mensagemVisivel.nome === nome) {
+                mensagensDiv.classList.remove("fade-in");
+                mensagensDiv.classList.add("fade-out");
+                setTimeout(() => {
+                    mensagensDiv.innerHTML = "";
+                }, 300);
+                mensagemVisivel = {grupo: null, nome: null};
+                return;
+            }
+
+            // Senão, mostra a nova mensagem
+            mensagensDiv.classList.remove("fade-out");
+            mensagensDiv.classList.add("fade-in");
+            mensagensDiv.innerHTML = `${mensagens[grupo][nome]}`;
+            mensagemVisivel = {grupo, nome};
+
+            visitados[grupo] = true;
+            localStorage.setItem("visitados", JSON.stringify(visitados));
+            verificarAcessoSorpresa();
+        }
+
+
+        let audio = new Audio('musica.mp3'); // Cria uma variável para manter o áudio
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();  // Se a música estiver pausada, toca ela
+            } else {
+                audio.pause();  // Se a música estiver tocando, pausa ela
+            }
+        }
+
+        function resetMusic() {
+            audio.currentTime = 0;  // Reseta o tempo da música
+            if (!audio.paused) {
+                audio.pause();  // Pausa a música se estiver tocando
+            }
+        }
+
+        function getNextBirthday() {
+            const now = new Date();
+            const year = now.getMonth() > 4 || (now.getMonth() === 4 && now.getDate() > 5) ? now.getFullYear() + 1 : now.getFullYear();
+            return new Date(year, 4, 5); // 5 de maio
+        }
+
+        function getNextBirthday() {
+            return new Date("2026-05-13T00:00:00");
+        }
+        function updateCountdown() {
+            const now = new Date();
+            const birthday = getNextBirthday();
+            const diff = birthday - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            const el = document.getElementById("countdown");
+            el.innerHTML = `Faltam ${days}d ${hours}h ${minutes}m ${seconds}s para o seu próximo aniversário`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        function espalharBrilhos() {
+            for (let i = 0; i < 100; i++) {
+                const brilho = document.createElement("div");
+                brilho.className = "sparkle";
+                brilho.style.left = `${Math.random() * window.innerWidth}px`;
+                brilho.style.top = `${Math.random() * window.innerHeight}px`;
+                document.body.appendChild(brilho);
+
+                // Remove depois da animação
+                setTimeout(() => brilho.remove(), 1000);
+            }
+        }
+
+        function tocarSomBrilho() {
+            const som = new Audio("brilhos.mp3");
+            som.currentTime = 0;
+            som.play();
+        }
+
+
+
+        document.querySelector(".btn.btn-date").addEventListener("click", () => {
+            espalharBrilhos();
+            tocarSomBrilho();
+        });
+
+
+
+    </script>
+</body>
+
+</html>
